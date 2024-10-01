@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ClientOnly>
-      <DragIcon />
-    </ClientOnly>
+    <nuxt-layout>
+      <nuxt-page />
+    </nuxt-layout>
   </div>
 </template>

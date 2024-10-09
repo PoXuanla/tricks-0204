@@ -1,4 +1,7 @@
 <template>
+  <client-only>
+    <DragIcon />
+  </client-only>
   <div class="container" ref="targetDiv">
     white-space property values can be specified as a single keyword chosen from
     the list of values below, or two values representing shorthand for the
@@ -60,25 +63,23 @@ const setDivHeight = (divElement, height) => {
 }
 
 onMounted(() => {
-    if (targetDiv.value) {
-        fontInfo.value = getFontSizeAndLineHeight(targetDiv.value)
-        const aa = findHeight(120, fontInfo.value.lineHeight)
-        setDivHeight(targetDiv.value, aa)
-    }
+    // if (targetDiv.value) {
+    //     fontInfo.value = getFontSizeAndLineHeight(targetDiv.value)
+    //     const aa = findHeight(120, fontInfo.value.lineHeight)
+    //     setDivHeight(targetDiv.value, aa)
+    // }
 })
 </script>
 
 <style lang="css" scoped>
 .container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   width: 150px;
   white-space: wrap;
   color: #2c3a2f;
-  background-color: #f5e6d3;
+  background-color: #c348e2;
   font-size: 12px;
   line-height: 1.5;
+  height: 50px;
 }
 </style>

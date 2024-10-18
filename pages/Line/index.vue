@@ -7,10 +7,27 @@
     the list of values below, or two values representing shorthand for the
     white-space-collapse and text-wrap properties.
   </div>
+  <button @click="cc">qwasdddddddddddddddewqe</button>
+  <div
+    v-show="show"
+    ref="reff"
+    id="myElement"
+    class="test-div"
+    :style="{ top: top, left: left }"
+  ></div>
 </template>
 <script lang="js" setup>
 const targetDiv = ref(null)
 const fontInfo = ref(null)
+const show = ref(false)
+const reff = ref(null)
+
+const top = ref('300px')
+const left = ref('300px')
+
+const showItem = () => {
+    show.value = !show.value
+}
 
 const getFontSizeAndLineHeight = (element) => {
     if (!(element instanceof Element)) {
@@ -62,6 +79,31 @@ const setDivHeight = (divElement, height) => {
     divElement.style.height = `${height}px`;
 }
 
+function isElementHeightExceedingScreen(element) {
+    // 獲取元素的位置資訊
+    const rect = element.getBoundingClientRect();
+
+    // 獲取元素的頂部和底部位置
+    const elementTop = rect.top;
+
+    console.log("elementTop", elementTop)
+
+    // 檢查元素底部是否超出視窗底部
+    return elementTop < 0;
+}
+
+const cc = async () => {
+    show.value = !show.value
+    await nextTick();
+    if (isElementHeightExceedingScreen(reff.value)) {
+        console.log('元素高度超出螢幕!');
+    } else {
+        console.log('元素高度在螢幕範圍內');
+        top.value = '0px'
+
+    }
+}
+
 onMounted(() => {
     // if (targetDiv.value) {
     //     fontInfo.value = getFontSizeAndLineHeight(targetDiv.value)
@@ -81,5 +123,14 @@ onMounted(() => {
   font-size: 12px;
   line-height: 1.5;
   height: 50px;
+}
+
+.test-div {
+  width: 300px;
+  height: 300px;
+  background-color: #c348e2;
+  position: fixed;
+  top: 300px;
+  left: 300px;
 }
 </style>

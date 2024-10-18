@@ -3,7 +3,7 @@ import { useDraggable, useWindowSize, useElementSize } from "@vueuse/core";
 import { ref } from "vue";
 
 const el = ref<HTMLElement | null>(null);
-const { width } = useWindowSize();
+const { width, height } = useWindowSize();
 
 const startFunc = (position: { x: number; y: number }, e: MouseEvent) => {
   // 獲取被點擊的元素
@@ -25,18 +25,27 @@ const getScrollBar = () => {
 
 // `style` will be a helper computed for `left: ?px; top: ?px;`
 const { x, y, style } = useDraggable(el, {
-  initialValue: { x: 40, y: 40 },
-  onStart: startFunc,
+  initialValue: { x: 500, y: 40 },
   onMove: (position) => {
     const dragElementWidth = el.value?.clientWidth || 0;
+    const dragElementHeight = el.value?.clientHeight || 0;
+
     const ww = getScrollBar();
-    console.log("dragElementWidth", dragElementWidth);
-    console.log("ww", ww);
 
     if (position.x > width.value - dragElementWidth - ww) {
-      console.log("position", position);
-
       position.x = width.value - dragElementWidth - ww;
+    }
+
+    if (position.x < 0) {
+      position.x = 0;
+    }
+
+    if (position.y < 0) {
+      position.y = 0;
+    }
+
+    if (position.y > height.value - dragElementHeight) {
+      position.y = height.value - dragElementHeight;
     }
   },
 });
@@ -51,6 +60,10 @@ const { x, y, style } = useDraggable(el, {
       background-color: red;
       z-index: 1000;
       white-space: no-wrap;
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard syntax */
     "
   >
     <div class="drag-element no-wrap">Drag me! I am at</div>

@@ -4,14 +4,17 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port=3001",
+    "dev": "nuxt dev --port=3002",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@iconify/vue": "^4.1.2",
+    "@radix-ui/colors": "^3.0.0",
     "@vueuse/core": "^11.1.0",
     "nuxt": "^3.13.0",
+    "radix-vue": "^1.9.7",
     "vue": "latest",
     "vue-router": "latest",
     "vue3-drag-resize": "^2.0.5"

@@ -1,12 +1,13 @@
-const { blackA, green, grass, mauve } = require("@radix-ui/colors");
+const { blackA, green, grass, mauve, teal } = require("@radix-ui/colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./**/*.vue"],
+  content: ["./components/**/*.vue", "./pages/**/*.vue", "./app.vue"],
   theme: {
     extend: {
       colors: {
         ...blackA,
+        ...teal,
         ...green,
         ...grass,
         ...mauve,
@@ -27,5 +28,16 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    ({ addUtilities }) => {
+      addUtilities({
+        ".fixed-center": {
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        },
+      });
+    },
+  ],
 };

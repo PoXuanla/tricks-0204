@@ -1,5 +1,9 @@
 <template>
-  <ListBox class="fixed-center" :list-data="messages" :load-data="loadData" />
+  <ListBox
+    class="fixed-center animate-fade-in opacity-0"
+    :list-data="messages"
+    :load-data="loadData"
+  />
 </template>
 
 <script setup lang="ts">

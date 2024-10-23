@@ -5,7 +5,7 @@ import { useIntersectionObserver } from "@vueuse/core";
 
 const { listData, loadData = undefined } = defineProps<{
   listData: ListData[];
-  loadData?: () => {};
+  loadData?: () => void;
 }>();
 
 const loadTrigger = useTemplateRef("loadTrigger");
